@@ -1,0 +1,115 @@
+// --- variables --------------------------------------------------------------
+
+$base-gap: 10px;
+
+$font-size-normal: 14px;
+$font-size-xxlarge: 18px;
+
+$color-black: #000;
+$color-white: #fff;
+$color-white-dark: #eee;
+
+// --- placeholders: gallery togglers -----------------------------------------
+
+%gallery-toggler {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  bottom: 0;
+  text-align: center;
+}
+
+// --- gallery ----------------------------------------------------------------
+
+.gallery {
+  width: 500px;
+  position: relative;
+  margin: 10px auto 0;
+
+  &__caption {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    padding: $base-gap*4 $base-gap*2 $base-gap;
+    text-align: center;
+    font-size: $font-size-normal;
+    color: $color-white;
+    box-sizing: border-box;
+  }
+
+  &__counter {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    font-size: $font-size-normal;
+    color: $color-white;
+    padding: $base-gap*.5 $base-gap*.7;
+    background: rgba($color-black, .5);
+  }
+
+  &__image-toggler {
+    @extend %gallery-toggler;
+    width: 22%;
+    background: rgba($color-white, .25);
+
+    &--prev {
+      left: 0;
+    }
+
+    &--next {
+      right: 0;
+    }
+  }
+
+  &__link,
+  &__holder {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+  }
+
+  &__link {
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 0;
+      right: 0;
+      box-shadow: 0 0 $base-gap*5 $base-gap*2 rgba($color-black, .25);
+    }
+  }
+
+  &__holder {
+    &::before,
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 0;
+      right: 0;
+      box-shadow: 0 0 $base-gap*7 $base-gap*7 rgba($color-black, .25);
+    }
+
+    &::before {
+      bottom: 0;
+    }
+
+    &::after {
+      top: 0;
+    }
+  }
+
+  &__image {
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 66.66%;
+    background-color: $color-white-dark;
+  }
+
+  &__image-src {
+    height: 100%;
+  }
+}
