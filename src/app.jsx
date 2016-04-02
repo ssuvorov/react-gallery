@@ -16,12 +16,12 @@ const pictures = [
 
 let thumbs = [];
 
-for (let i=0; i<pictures.length; i++) {
+for (const [index, item] of pictures.entries()) {
   thumbs.push({
-    id: i*100,
-    src: pictures[i],
-    href: pictures[i],
-    caption: `picture ${i+1}`
+    id: index*100,
+    src: item,
+    href: item,
+    caption: `picture ${index+1}`
   });
 }
 
