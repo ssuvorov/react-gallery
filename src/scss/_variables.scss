@@ -1,0 +1,20 @@
+// --- common variables -------------------------------------------------------
+
+$base-gap: 10px;
+$font-size-normal: 14px;
+$font-size-xxlarge: 22px;
+
+$color-black: #000;
+$color-white: #fff;
+$color-white-dark: #eee;
+$color-white-dark: #eee;
+$color-link: #0ad;
+$color-border: #eee;
+
+// --- thumbs variables & setup -----------------------------------------------
+
+$thumbs-holder-height: 90px;
+$thumbs-image-width: 100px;
+$thumbs-image-height: 66px;
+$thumbs-nav-link-width: 40px;
+$thumbs-nav-gap: $thumbs-nav-link-width+$base-gap/2;

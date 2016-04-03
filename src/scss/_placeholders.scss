@@ -1,0 +1,18 @@
+// --- placeholders: gallery togglers -----------------------------------------
+
+%gallery-toggler {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  bottom: 0;
+  text-align: center;
+  text-decoration: none;
+}
+
+// --- placeholders: unstyled -------------------------------------------------
+
+%unstyled {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}

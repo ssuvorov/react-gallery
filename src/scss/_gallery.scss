@@ -1,24 +1,3 @@
-// --- variables --------------------------------------------------------------
-
-$base-gap: 10px;
-
-$font-size-normal: 14px;
-$font-size-xxlarge: 18px;
-
-$color-black: #000;
-$color-white: #fff;
-$color-white-dark: #eee;
-
-// --- placeholders: gallery togglers -----------------------------------------
-
-%gallery-toggler {
-  position: absolute;
-  z-index: 1;
-  top: 0;
-  bottom: 0;
-  text-align: center;
-}
-
 // --- gallery ----------------------------------------------------------------
 
 .gallery {
@@ -50,7 +29,23 @@ $color-white-dark: #eee;
   &__image-toggler {
     @extend %gallery-toggler;
     width: 22%;
-    background: rgba($color-white, .25);
+
+    .icon-thin-arrow-prev {
+      left: 0;
+    }
+
+    .icon-thin-arrow-next {
+      right: 0;
+    }
+
+    .gallery__toggler-icon {
+      position: absolute;
+      top: 50%;
+      font-size: $font-size-xxlarge;
+      color: $color-white;
+      @include transform(translateY(-50%));
+
+    }
 
     &--prev {
       left: 0;
@@ -107,6 +102,29 @@ $color-white-dark: #eee;
     overflow: hidden;
     padding-bottom: 66.66%;
     background-color: $color-white-dark;
+
+    .gallery__toggler-icon {
+      opacity: 0;
+      @include transition(
+        opacity 250ms ease-in-out,
+        left 250ms ease-in-out,
+        right 250ms ease-in-out
+      );
+    }
+
+    &:hover {
+      .gallery__toggler-icon {
+        opacity: 1;
+      }
+
+      .icon-thin-arrow-prev {
+        left: 10px;
+      }
+
+      .icon-thin-arrow-next {
+        right: 10px;
+      }
+    }
   }
 
   &__image-src {

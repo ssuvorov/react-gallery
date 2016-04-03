@@ -9,11 +9,13 @@ const Togglers = ({modifier, onPrevClick, onNextClick }) => {
         href="#"
         onClick={onPrevClick}
       >
+        <span className={`${modifier}__toggler-icon icon-thin-arrow-prev`}></span>
       </a>
       <a className={`${modifier}__image-toggler ${modifier}__image-toggler--next`}
         href="#"
         onClick={onNextClick}
       >
+        <span className={`${modifier}__toggler-icon icon-thin-arrow-next`}></span>
       </a>
     </div>
   )

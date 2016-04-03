@@ -1,33 +1,3 @@
-// --- variables & setup ------------------------------------------------------
-
-$thumbs-holder-height: 90px;
-$thumbs-image-width: 100px;
-$thumbs-image-height: 66px;
-$thumbs-nav-link-width: 40px;
-$thumbs-nav-gap: $thumbs-nav-link-width+$base-gap/2;
-
-$color-border: #eee;
-$color-white-dark: #eee;
-$color-link: #0ad;
-
-// --- placeholders: unstyled -------------------------------------------------
-
-%unstyled {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-// --- placeholders: gallery togglers -----------------------------------------
-
-%gallery-toggler {
-  position: absolute;
-  z-index: 1;
-  top: 0;
-  bottom: 0;
-  text-align: center;
-}
-
 // --- thumbs -----------------------------------------------------------------
 
 .thumbs {

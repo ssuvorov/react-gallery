@@ -19520,14 +19520,22 @@ var Togglers = function Togglers(_ref) {
   return _react2.default.createElement(
     "div",
     { className: modifier + "__togglers" },
-    _react2.default.createElement("a", { className: modifier + "__image-toggler " + modifier + "__image-toggler--prev",
-      href: "#",
-      onClick: onPrevClick
-    }),
-    _react2.default.createElement("a", { className: modifier + "__image-toggler " + modifier + "__image-toggler--next",
-      href: "#",
-      onClick: onNextClick
-    })
+    _react2.default.createElement(
+      "a",
+      { className: modifier + "__image-toggler " + modifier + "__image-toggler--prev",
+        href: "#",
+        onClick: onPrevClick
+      },
+      _react2.default.createElement("span", { className: modifier + "__toggler-icon icon-thin-arrow-prev" })
+    ),
+    _react2.default.createElement(
+      "a",
+      { className: modifier + "__image-toggler " + modifier + "__image-toggler--next",
+        href: "#",
+        onClick: onNextClick
+      },
+      _react2.default.createElement("span", { className: modifier + "__toggler-icon icon-thin-arrow-next" })
+    )
   );
 };
 
