@@ -16,3 +16,11 @@
   padding: 0;
   list-style: none;
 }
+
+// --- ellipsis -----
+
+%ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

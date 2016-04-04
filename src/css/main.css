@@ -11,6 +11,11 @@
   padding: 0;
   list-style: none; }
 
+.gallery__caption {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; }
+
 .gallery {
   width: 500px;
   position: relative;
@@ -19,7 +24,7 @@
     position: absolute;
     width: 100%;
     bottom: 0;
-    padding: 40px 20px 10px;
+    padding: 0 10px 10px;
     text-align: center;
     font-size: 14px;
     color: #fff;
@@ -50,12 +55,13 @@
     .gallery__image-toggler--next {
       right: 0; }
   .gallery__link, .gallery__holder {
+    width: 100%;
     position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
-    right: 0;
-    text-align: center; }
+    text-align: center;
+    white-space: nowrap; }
   .gallery__link::after {
     content: '';
     display: block;
@@ -81,8 +87,9 @@
     background-color: #eee; }
     .gallery__image .gallery__toggler-icon {
       opacity: 0;
-      -webkit-transition: opacity 250ms ease-in-out, left 250ms ease-in-out, right 250ms ease-in-out;
-      transition: opacity 250ms ease-in-out, left 250ms ease-in-out, right 250ms ease-in-out; }
+      text-shadow: 0 0 4px rgba(0, 0, 0, 0.65);
+      -webkit-transition: opacity 0.2s ease-in-out, left 0.2s ease-in-out, right 0.2s ease-in-out;
+      transition: opacity 0.2s ease-in-out, left 0.2s ease-in-out, right 0.2s ease-in-out; }
     .gallery__image:hover .gallery__toggler-icon {
       opacity: 1; }
     .gallery__image:hover .icon-thin-arrow-prev {
@@ -90,6 +97,7 @@
     .gallery__image:hover .icon-thin-arrow-next {
       right: 10px; }
   .gallery__image-src {
+    max-width: 100%;
     height: 100%; }
 
 .thumbs {

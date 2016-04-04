@@ -19161,12 +19161,42 @@ var Gallery = function (_Component) {
   }
 
   _createClass(Gallery, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var position = this.getInitialPosition();
+
+      this.setState({ position: position });
+    }
+  }, {
+    key: 'getInitialPosition',
+    value: function getInitialPosition() {
+      return this._holder.clientWidth;
+    }
+  }, {
+    key: 'getPrevPicture',
+    value: function getPrevPicture() {
+      var pictures = this.props.pictures;
+
+      var index = mod(this.state.activeIndex - 1, pictures.length);
+
+      return pictures[index];
+    }
+  }, {
     key: 'getActivePicture',
     value: function getActivePicture() {
       var pictures = this.props.pictures;
 
 
       return pictures[this.state.activeIndex];
+    }
+  }, {
+    key: 'getNextPicture',
+    value: function getNextPicture() {
+      var pictures = this.props.pictures;
+
+      var index = mod(this.state.activeIndex + 1, pictures.length);
+
+      return pictures[index];
     }
   }, {
     key: 'getCaption',
@@ -19225,6 +19255,8 @@ var Gallery = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
+      var _this2 = this;
+
       var _props = this.props;
       var hideTogglers = _props.hideTogglers;
       var pictures = _props.pictures;
@@ -19232,7 +19264,9 @@ var Gallery = function (_Component) {
       var thumbs = _props.thumbs;
       var trackInfo = _props.trackInfo;
       var url = _props.url;
-      var activeIndex = this.state.activeIndex;
+      var _state = this.state;
+      var activeIndex = _state.activeIndex;
+      var position = _state.position;
 
 
       var showTogglers = !hideTogglers && pictures.length > MIN_PICTURES_COUNT;
@@ -19244,7 +19278,9 @@ var Gallery = function (_Component) {
         { className: 'gallery' },
         _react2.default.createElement(
           'div',
-          { className: 'gallery__image' },
+          { className: 'gallery__image', ref: function ref(h) {
+              _this2._holder = h;
+            } },
           showTogglers ? _react2.default.createElement(_togglers2.default, {
             modifier: 'gallery',
             onNextClick: this.showNextImage,
@@ -19252,9 +19288,17 @@ var Gallery = function (_Component) {
           }) : null,
           _react2.default.createElement(
             'div',
-            { className: 'gallery__holder', href: url },
+            { className: 'gallery__holder', style: { left: -position } },
+            _react2.default.createElement('img', { className: 'gallery__image-src',
+              src: this.getPrevPicture(),
+              alt: title
+            }),
             _react2.default.createElement('img', { className: 'gallery__image-src',
               src: this.getActivePicture(),
+              alt: title
+            }),
+            _react2.default.createElement('img', { className: 'gallery__image-src',
+              src: this.getNextPicture(),
               alt: title
             }),
             thumbs ? _react2.default.createElement(

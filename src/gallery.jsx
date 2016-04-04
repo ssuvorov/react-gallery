@@ -27,10 +27,34 @@ class Gallery extends Component {
     this.showNextImage = this.showNextImage.bind(this);
   }
 
+  componentDidMount() {
+    const position = this.getInitialPosition();
+
+    this.setState({ position: position })
+  }
+
+  getInitialPosition() {
+    return this._holder.clientWidth;
+  }
+
+  getPrevPicture() {
+    const { pictures } = this.props;
+    const index = mod(this.state.activeIndex - 1, pictures.length);
+
+    return pictures[index];
+  }
+
   getActivePicture() {
     const { pictures } = this.props;
 
     return pictures[this.state.activeIndex];
+  }
+
+  getNextPicture() {
+    const { pictures } = this.props;
+    const index = mod(this.state.activeIndex + 1, pictures.length);
+
+    return pictures[index];
   }
 
   getCaption() {
@@ -90,7 +114,7 @@ class Gallery extends Component {
       url
       } = this.props;
 
-    const { activeIndex } = this.state;
+    const { activeIndex, position } = this.state;
 
     const showTogglers = !hideTogglers && pictures.length > MIN_PICTURES_COUNT;
     const caption = this.getCaption();
@@ -98,7 +122,7 @@ class Gallery extends Component {
 
     return (
       <div className="gallery">
-        <div className="gallery__image">
+        <div className="gallery__image" ref={(h) => {this._holder = h;}}>
           { showTogglers
             ? <Togglers
                 modifier="gallery"
@@ -107,9 +131,17 @@ class Gallery extends Component {
               />
             : null
           }
-          <div className="gallery__holder" href={url}>
+          <div className="gallery__holder" style={{left: -position}}>
+            <img className="gallery__image-src"
+              src={this.getPrevPicture()}
+              alt={title}
+            />
             <img className="gallery__image-src"
               src={this.getActivePicture()}
+              alt={title}
+            />
+            <img className="gallery__image-src"
+              src={this.getNextPicture()}
               alt={title}
             />
             {
