@@ -5,12 +5,8 @@
     "babel-preset-react": "^6.5.0",
     "babelify": "^7.2.0",
     "browserify": "^13.0.0",
-    "grunt": "^0.4.5",
-    "grunt-contrib-clean": "^0.6.0",
-    "grunt-contrib-watch": "^0.6.1",
-    "grunt-eslint": "^3.0.0",
-    "grunt-react-templates": "^0.1.2",
-    "grunt-sass": "^1.1.0",
+    "gulp": "^3.9.1",
+    "gulp-sass": "^2.2.0",
     "react": "^0.14.8",
     "react-dom": "^0.14.8"
   },
@@ -19,7 +15,7 @@
   },
   "private": true,
   "scripts": {
-    "start": "browserify --extension='.jsx' src/app -t babelify -o src/static/bundle.js"
+    "start": "browserify --extension='.jsx' src/app -t babelify -o src/static/bundle.js && gulp"
   },
   "dependencies": {
     "babelify": "^7.2.0"
