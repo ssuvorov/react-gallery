@@ -8,7 +8,9 @@
     "gulp": "^3.9.1",
     "gulp-sass": "^2.2.0",
     "react": "^0.14.8",
-    "react-dom": "^0.14.8"
+    "react-dom": "^0.14.8",
+    "react-swipe": "^5.0.2",
+    "swipe-js-iso": "^2.0.3"
   },
   "engines": {
     "node": ">=0.10.0"

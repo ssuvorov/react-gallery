@@ -55,13 +55,13 @@
     .gallery__image-toggler--next {
       right: 0; }
   .gallery__link, .gallery__holder {
-    width: 100%;
-    position: absolute;
+    position: absolute !important;
     top: 0;
     bottom: 0;
     left: 0;
-    text-align: center;
-    white-space: nowrap; }
+    right: 0; }
+    .gallery__link > div, .gallery__holder > div {
+      height: 100%; }
   .gallery__link::after {
     content: '';
     display: block;
@@ -96,6 +96,9 @@
       left: 10px; }
     .gallery__image:hover .icon-thin-arrow-next {
       right: 10px; }
+  .gallery__image-src-wrap {
+    height: 100%;
+    text-align: center; }
   .gallery__image-src {
     max-width: 100%;
     height: 100%; }

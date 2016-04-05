@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactSwipe from 'react-swipe';
 import Thumbs from './thumbs';
 import Togglers from './togglers';
 
@@ -25,16 +26,7 @@ class Gallery extends Component {
     this.updateIndex = this.updateIndex.bind(this);
     this.showPrevImage = this.showPrevImage.bind(this);
     this.showNextImage = this.showNextImage.bind(this);
-  }
-
-  componentDidMount() {
-    const position = this.getInitialPosition();
-
-    this.setState({ position: position })
-  }
-
-  getInitialPosition() {
-    return this._holder.clientWidth;
+    this.swipedHandler = this.swipedHandler.bind(this);
   }
 
   getPrevPicture() {
@@ -104,6 +96,22 @@ class Gallery extends Component {
     }
   }
 
+  swiped(diff) {
+    const { activeIndex } = this.state;
+    const { pictures } = this.props;
+
+    const index = mod(this.state.activeIndex + diff, pictures.length);
+
+    this.setState({
+      activeIndex: index
+    })
+  }
+
+  swipedHandler(move) {
+    const diff = move ? +1 : -1;
+    this.swiped(diff);
+  }
+
   render() {
     const {
       hideTogglers,
@@ -114,11 +122,30 @@ class Gallery extends Component {
       url
       } = this.props;
 
-    const { activeIndex, position } = this.state;
+    const { activeIndex } = this.state;
 
     const showTogglers = !hideTogglers && pictures.length > MIN_PICTURES_COUNT;
     const caption = this.getCaption();
     const counter = `${activeIndex + 1}/${pictures.length}`;
+    const styles = {
+      container: {
+        position: 'absolute',
+        width: '100%',
+        height: '100%',
+        overflow: 'hidden',
+        visibility: 'visible'
+      },
+      wrapper: {
+        overflow: 'hidden',
+        position: 'relative',
+        height: '100%'
+      },
+      child: {
+        float: 'left',
+        width: '500px',
+        position: 'relative'
+      }
+    };
 
     return (
       <div className="gallery">
@@ -131,25 +158,35 @@ class Gallery extends Component {
               />
             : null
           }
-          <div className="gallery__holder" style={{left: -position}}>
-            <img className="gallery__image-src"
-              src={this.getPrevPicture()}
-              alt={title}
-            />
-            <img className="gallery__image-src"
-              src={this.getActivePicture()}
-              alt={title}
-            />
-            <img className="gallery__image-src"
-              src={this.getNextPicture()}
-              alt={title}
-            />
-            {
-              thumbs
-                ? <div className="gallery__caption" title={caption}>{ caption }</div>
-                : null
-            }
-          </div>
+          <ReactSwipe
+            className="gallery__holder"
+            swipeOptions={{
+              continuous: true,
+              callback: this.swipedHandler,
+              startSlide: 1
+            }}
+            key={this.state.activeIndex}
+            style={styles}
+          >
+            <div className="gallery__image-src-wrap">
+              <img className="gallery__image-src"
+                src={this.getPrevPicture()}
+                alt={title}
+              />
+            </div>
+            <div className="gallery__image-src-wrap">
+              <img className="gallery__image-src"
+                src={this.getActivePicture()}
+                alt={title}
+              />
+            </div>
+            <div className="gallery__image-src-wrap">
+              <img className="gallery__image-src"
+                src={this.getNextPicture()}
+                alt={title}
+              />
+            </div>
+          </ReactSwipe>
         </div>
         { this.renderThumbs() }
       </div>
